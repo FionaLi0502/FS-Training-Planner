@@ -59,17 +59,29 @@ An AI-powered web application that generates personalized, safe training plans f
 
 ## 📸 Screenshots
 
-![Training Planner Interface](<img width="2363" height="2651" alt="image" src="https://github.com/user-attachments/assets/beda3560-6b40-451e-af02-e92de7477ba8" />)
+<div align="center">
+
+### Training Planner Interface
+<img src="https://github.com/user-attachments/assets/beda3560-6b40-451e-af02-e92de7477ba8" alt="Training Planner Interface" width="800"/>
+
 *Modern pastel UI with comprehensive training inputs*
 
-![Generated Training Plan](<img width="957" height="1063" alt="image" src="https://github.com/user-attachments/assets/514f38dd-36c4-4091-ba12-cfca4c266ba1" />)
+### Generated Training Plan
+<img src="https://github.com/user-attachments/assets/514f38dd-36c4-4091-ba12-cfca4c266ba1" alt="Generated Training Plan" width="800"/>
+
 *AI-generated training plan with safety-conscious exercises*
 
-![Mobile View](<img width="645" height="3595" alt="image" src="https://github.com/user-attachments/assets/bbf1761d-527c-4e20-b523-f80b7b1bfea9" />)
+### Mobile View
+<img src="https://private-user-images.githubusercontent.com/196947224/402896158-0b79e518-0a1e-48a7-9869-e1a8c6b3acbb.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzg5NTczMzIsIm5iZiI6MTczODk1NzAzMiwicGF0aCI6Ii8xOTY5NDcyMjQvNDAyODk2MTU4LTBiNzllNTE4LTBhMWUtNDhhNy05ODY5LWUxYThjNmIzYWNiYi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMjA3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDIwN1QyMDA1MzJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03NWE2ZjNlNWRlNmMyNGM3Y2ExMmU5M2RmODNhOTQyNjliZTkzNjJhYTk2ZmJlM2Q5ZDM2NTUxMDRiMmQyNTZmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.SoYs-XpvmLI0QovXPe2GFz2r9ZI-h15QmWPJWbXGqPU" alt="Mobile View" width="400"/>
+
 *Fully responsive mobile interface with touch-optimized controls*
 
-![Chat Interface](<img width="722" height="320" alt="image" src="https://github.com/user-attachments/assets/71ae91d9-5a30-4105-8362-3000d001c874" />)
+### Chat Interface
+<img src="https://github.com/user-attachments/assets/71ae91d9-5a30-4105-8362-3000d001c874" alt="Chat Interface" width="800"/>
+
 *Natural conversation with your AI skating coach*
+
+</div>
 
 ---
 
@@ -96,8 +108,8 @@ An AI-powered web application that generates personalized, safe training plans f
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/FionaLi0502/FS-Training-Planner/.git
-cd fs-training-planner
+git clone https://github.com/FionaLi0502/FS-Training-Planner.git
+cd FS-Training-Planner
 
 # 2. Install dependencies
 npm install
@@ -267,7 +279,7 @@ git init
 git add .
 git commit -m "Initial commit - Figure Skating Training Planner"
 git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/fs-training-planner.git
+git remote add origin https://github.com/FionaLi0502/FS-Training-Planner.git
 git push -u origin main
 ```
 
