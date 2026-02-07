@@ -16,7 +16,7 @@ export default function Home() {
     jumps: '',
     spins: '',
     trainingFocus: [],
-    availableTime: 60,
+    availableTime: 60, // 15–180
     intensity: 'Medium',
     timeOfDay: '',
     trainingMode: '',
@@ -29,6 +29,7 @@ export default function Home() {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -56,12 +57,8 @@ export default function Home() {
       });
 
       const data = await response.json();
-
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setPlan(data);
-      }
+      if (data.error) setError(data.error);
+      else setPlan(data);
     } catch (err) {
       setError('Something went wrong. Please try again.');
     } finally {
@@ -91,7 +88,6 @@ export default function Home() {
       });
 
       const data = await response.json();
-
       if (data.message) {
         setChatMessages((prev) => [
           ...prev,
@@ -105,27 +101,60 @@ export default function Home() {
     }
   };
 
+  // ---- Pastel UI helpers ----
+  const cardBase =
+    'bg-white/85 backdrop-blur-xl rounded-2xl shadow-[0_10px_35px_rgba(15,23,42,0.08)] border border-white/60';
+  const labelBase = 'block text-sm font-medium text-slate-700 mb-2';
+  const inputBase =
+    'w-full rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-200 focus:border-sky-200 transition';
+  const selectBase = `${inputBase} pr-10`;
+  const chipBase =
+    'inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm transition select-none';
+  const chipOff = 'bg-white/70 border-slate-200 text-slate-700 hover:bg-slate-50';
+
+  const sectionTitle = (emoji, title, badgeClass) => (
+    <div className="flex items-center gap-3 mb-4">
+      <span
+        className={`inline-flex items-center justify-center w-10 h-10 rounded-2xl ${badgeClass}`}
+      >
+        {emoji}
+      </span>
+      <h2 className="text-xl md:text-2xl font-semibold text-slate-800">{title}</h2>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-4xl mx-auto p-4 md:p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-900 mb-2">
-            ⛸️ Figure Skating Training Planner
+    <div className="min-h-screen bg-gradient-to-b from-rose-50 via-sky-50 to-white">
+      <div className="max-w-5xl mx-auto px-4 py-6 md:px-8 md:py-10">
+        {/* Header */}
+        <div className="text-center mb-8 md:mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/70 border border-white/60 px-4 py-2 shadow-sm">
+            <span className="text-lg">⛸️</span>
+            <span className="text-sm text-slate-600">
+              {getGreeting()}! Let’s plan your practice.
+            </span>
+          </div>
+
+          <h1 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-slate-900">
+            Figure Skating Training Planner
           </h1>
-          <p className="text-xl text-gray-600">{getGreeting()}! Let's plan your practice.</p>
+          <p className="mt-2 text-slate-600">Simple plan • Clean layout • Quick chat help</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 space-y-6">
+        {/* Main Form */}
+        <div className={`${cardBase} p-5 md:p-8 mb-6 md:mb-8 space-y-8`}>
           {/* Skater Profile */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">👤 Skater Profile</h2>
-            <div className="grid md:grid-cols-2 gap-4">
+            {sectionTitle('👤', 'Skater Profile', 'bg-pink-100 text-pink-700')}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
               <div>
-                <label className="block text-sm font-medium mb-2">Skater Type</label>
+                <label className={labelBase}>Skater Type</label>
                 <select
-                  className="w-full border rounded-lg p-2"
+                  className={selectBase}
                   value={formData.skaterType}
-                  onChange={(e) => setFormData({ ...formData, skaterType: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, skaterType: e.target.value })
+                  }
                 >
                   <option value="">Select type</option>
                   <option value="Adult">Adult</option>
@@ -134,13 +163,16 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Test Level Passed</label>
+                <label className={labelBase}>Test Level Passed</label>
                 <select
-                  className="w-full border rounded-lg p-2"
+                  className={selectBase}
                   value={formData.testLevel}
-                  onChange={(e) => setFormData({ ...formData, testLevel: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, testLevel: e.target.value })
+                  }
                 >
                   <option value="">Select level</option>
+                  <option value="No test passed">No test passed</option>
                   <option value="Pre-Preliminary">Pre-Preliminary</option>
                   <option value="Preliminary">Preliminary</option>
                   <option value="Pre-Bronze">Pre-Bronze</option>
@@ -156,38 +188,44 @@ export default function Home() {
 
           {/* Current Skills */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-2">🎯 Current Skills</h2>
-            <p className="text-sm text-blue-600 mb-4">
-              ℹ️ If between two options, choose the lower level.
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
+            {sectionTitle('🎯', 'Current Skills', 'bg-emerald-100 text-emerald-700')}
+            <div className="flex items-start gap-2 rounded-xl bg-emerald-50/70 border border-emerald-100 px-4 py-3 mb-4">
+              <span className="text-emerald-700">ℹ️</span>
+              <p className="text-sm text-emerald-800">
+                If your skill falls between two options, choose the lower level.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
               <div>
-                <label className="block text-sm font-medium mb-2">Jumps</label>
+                <label className={labelBase}>Jumps</label>
                 <select
-                  className="w-full border rounded-lg p-2"
+                  className={selectBase}
                   value={formData.jumps}
                   onChange={(e) => setFormData({ ...formData, jumps: e.target.value })}
                 >
                   <option value="">Select level</option>
-                  <option value="Waltz jump, Toe loop">Waltz jump, Toe loop</option>
-                  <option value="Salchow">Salchow</option>
-                  <option value="Loop">Loop</option>
-                  <option value="Flip">Flip</option>
+                  <option value="Haven't started jumps">Haven't started jumps</option>
+                  <option value="Waltz jump">Waltz jump</option>
+                  <option value="Toe loop / Salchow">Toe loop / Salchow</option>
+                  <option value="Loop / Flip">Loop / Flip</option>
                   <option value="Lutz">Lutz</option>
-                  <option value="Axel">Axel</option>
-                  <option value="Double jumps">Double jumps</option>
+                  <option value="Axel in progress">Axel in progress</option>
+                  <option value="Axel landed">Axel landed</option>
+                  <option value="Working on doubles">Working on doubles</option>
                   <option value="Advanced (beyond options)">Advanced (beyond options)</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Spins</label>
+                <label className={labelBase}>Spins</label>
                 <select
-                  className="w-full border rounded-lg p-2"
+                  className={selectBase}
                   value={formData.spins}
                   onChange={(e) => setFormData({ ...formData, spins: e.target.value })}
                 >
                   <option value="">Select level</option>
+                  <option value="Haven't started spins">Haven't started spins</option>
                   <option value="Two-foot spin">Two-foot spin</option>
                   <option value="One-foot spin">One-foot spin</option>
                   <option value="Scratch spin">Scratch spin</option>
@@ -202,46 +240,83 @@ export default function Home() {
 
           {/* Training Focus */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">🎓 Training Focus</h2>
-            <div className="grid md:grid-cols-2 gap-3">
-              {['Jumps', 'Spins', 'Footwork', 'Edges', 'Flexibility', 'Strength', 'Balance', 'Musicality'].map((focus) => (
-                <label key={focus} className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.trainingFocus.includes(focus)}
-                    onChange={() => toggleArrayItem('trainingFocus', focus)}
-                    className="w-4 h-4"
-                  />
-                  <span>{focus}</span>
-                </label>
-              ))}
+            {sectionTitle('🎓', 'Training Focus', 'bg-yellow-100 text-yellow-700')}
+            <div className="flex flex-wrap gap-2">
+              {[
+                'Jumps',
+                'Spins',
+                'Footwork',
+                'Edges',
+                'Flexibility',
+                'Strength',
+                'Balance',
+                'Musicality',
+              ].map((focus) => {
+                const on = formData.trainingFocus.includes(focus);
+                return (
+                  <button
+                    key={focus}
+                    type="button"
+                    onClick={() => toggleArrayItem('trainingFocus', focus)}
+                    className={`${chipBase} ${
+                      on
+                        ? 'bg-sky-100 border-sky-200 text-sky-800 shadow-sm'
+                        : chipOff
+                    }`}
+                    aria-pressed={on}
+                  >
+                    <span
+                      className={`inline-block w-2.5 h-2.5 rounded-full ${
+                        on ? 'bg-sky-500' : 'bg-slate-300'
+                      }`}
+                    />
+                    {focus}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Time & Effort */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">⏱️ Time & Effort</h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Available Time: {formData.availableTime} minutes
-                </label>
+            {sectionTitle('⏱️', 'Time & Effort', 'bg-sky-100 text-sky-700')}
+            <div className="space-y-5">
+              <div className="rounded-2xl bg-white/60 border border-slate-200 p-4 md:p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-sm font-medium text-slate-700">Available Time</label>
+                  <span className="text-sm font-semibold text-slate-900">
+                    {formData.availableTime} min
+                  </span>
+                </div>
+
                 <input
                   type="range"
                   min="15"
                   max="180"
                   step="15"
                   value={formData.availableTime}
-                  onChange={(e) => setFormData({ ...formData, availableTime: parseInt(e.target.value) })}
-                  className="w-full"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      availableTime: parseInt(e.target.value, 10),
+                    })
+                  }
+                  className="w-full accent-sky-500"
                 />
+
+                <div className="mt-2 flex justify-between text-xs text-slate-500">
+                  <span>15</span>
+                  <span>60</span>
+                  <span>120</span>
+                  <span>180</span>
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Intensity</label>
+                  <label className={labelBase}>Intensity</label>
                   <select
-                    className="w-full border rounded-lg p-2"
+                    className={selectBase}
                     value={formData.intensity}
                     onChange={(e) => setFormData({ ...formData, intensity: e.target.value })}
                   >
@@ -252,9 +327,9 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Time of Day</label>
+                  <label className={labelBase}>Time of Day</label>
                   <select
-                    className="w-full border rounded-lg p-2"
+                    className={selectBase}
                     value={formData.timeOfDay}
                     onChange={(e) => setFormData({ ...formData, timeOfDay: e.target.value })}
                   >
@@ -268,56 +343,75 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Training Mode */}
+          {/* Training Location */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">🏃 Training Mode</h2>
-            <div className="flex gap-3 flex-wrap">
-              {['Off-ice', 'On-ice', 'Combined'].map((mode) => (
-                <button
-                  key={mode}
-                  type="button"
-                  onClick={() => setFormData({ ...formData, trainingMode: mode })}
-                  className={`px-4 py-2 rounded-lg border-2 transition ${
-                    formData.trainingMode === mode
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : 'bg-white text-gray-700 border-gray-300 hover:border-blue-300'
-                  }`}
-                >
-                  {mode}
-                </button>
-              ))}
+            {sectionTitle('🏃', 'Training Location', 'bg-purple-100 text-purple-700')}
+            <div className="flex flex-wrap gap-2">
+              {['Off-ice', 'On-ice', 'Combined'].map((mode) => {
+                const on = formData.trainingMode === mode;
+                return (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, trainingMode: mode })}
+                    className={`${chipBase} ${
+                      on
+                        ? 'bg-purple-100 border-purple-200 text-purple-800 shadow-sm'
+                        : chipOff
+                    }`}
+                    aria-pressed={on}
+                  >
+                    {mode}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Equipment */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">🛠️ Equipment Available</h2>
-            <div className="grid md:grid-cols-2 gap-3 mb-3">
-              {['Resistance bands', 'Yoga mat', 'Foam roller', 'Balance board', 'Jump harness', 'Spinner'].map((equip) => (
-                <label key={equip} className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.equipment.includes(equip)}
-                    onChange={() => toggleArrayItem('equipment', equip)}
-                    className="w-4 h-4"
-                  />
-                  <span>{equip}</span>
-                </label>
-              ))}
+            {sectionTitle('🛠️', 'Equipment', 'bg-orange-100 text-orange-700')}
+            <div className="flex flex-wrap gap-2 mb-3">
+              {[
+                'Resistance bands',
+                'Yoga mat',
+                'Foam roller',
+                'Balance board',
+                'Spinner',
+                'Light weights',
+              ].map((equip) => {
+                const on = formData.equipment.includes(equip);
+                return (
+                  <button
+                    key={equip}
+                    type="button"
+                    onClick={() => toggleArrayItem('equipment', equip)}
+                    className={`${chipBase} ${
+                      on
+                        ? 'bg-orange-100 border-orange-200 text-orange-800 shadow-sm'
+                        : chipOff
+                    }`}
+                    aria-pressed={on}
+                  >
+                    {equip}
+                  </button>
+                );
+              })}
             </div>
+
             <input
               type="text"
               placeholder="Other equipment (optional)"
-              className="w-full border rounded-lg p-2"
+              className={inputBase}
               value={formData.otherEquipment}
               onChange={(e) => setFormData({ ...formData, otherEquipment: e.target.value })}
             />
           </div>
 
-          {/* Readiness Check */}
+          {/* Readiness */}
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">💪 Readiness Check</h2>
-            <div className="space-y-3">
+            {sectionTitle('💪', 'Readiness Check', 'bg-rose-100 text-rose-700')}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {[
                 'Feeling good',
                 'Minor soreness',
@@ -326,25 +420,37 @@ export default function Home() {
                 'Not enough food / low energy',
                 'High stress / high pressure',
                 'Returning from injury',
-              ].map((ready) => (
-                <label key={ready} className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.readiness.includes(ready)}
-                    onChange={() => toggleArrayItem('readiness', ready)}
-                    className="w-4 h-4"
-                  />
-                  <span>{ready}</span>
-                </label>
-              ))}
+              ].map((ready) => {
+                const on = formData.readiness.includes(ready);
+                return (
+                  <button
+                    key={ready}
+                    type="button"
+                    onClick={() => toggleArrayItem('readiness', ready)}
+                    className={`${chipBase} ${
+                      on
+                        ? 'bg-rose-100 border-rose-200 text-rose-800 shadow-sm'
+                        : chipOff
+                    } justify-start w-full`}
+                    aria-pressed={on}
+                  >
+                    <span
+                      className={`inline-block w-2.5 h-2.5 rounded-full ${
+                        on ? 'bg-rose-500' : 'bg-slate-300'
+                      }`}
+                    />
+                    <span className="text-left">{ready}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {(formData.readiness.includes('Significant soreness/pain') ||
               formData.readiness.includes('Returning from injury')) && (
               <div className="mt-4">
-                <label className="block text-sm font-medium mb-2">Affected Area (optional)</label>
+                <label className={labelBase}>Affected Area (optional)</label>
                 <select
-                  className="w-full border rounded-lg p-2"
+                  className={selectBase}
                   value={formData.affectedArea}
                   onChange={(e) => setFormData({ ...formData, affectedArea: e.target.value })}
                 >
@@ -361,17 +467,17 @@ export default function Home() {
             )}
           </div>
 
-          {/* Generate Button with Loading Spinner */}
+          {/* Generate */}
           <div className="relative">
             <button
               type="button"
               onClick={handleGeneratePlan}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-lg text-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white font-semibold py-4 px-6 text-lg shadow-[0_12px_30px_rgba(59,130,246,0.22)] transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-3">
-                  <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -382,15 +488,15 @@ export default function Home() {
               )}
             </button>
 
-            {/* Beautiful circular loading spinner overlay */}
+            {/* Beautiful circular loading spinner on the right */}
             {loading && (
-              <div className="absolute right-8 top-1/2 transform -translate-y-1/2">
+              <div className="absolute right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
                 <div className="relative w-12 h-12">
-                  {/* Outer rotating circle */}
-                  <div className="absolute inset-0 border-4 border-blue-200 rounded-full animate-pulse"></div>
-                  {/* Inner spinning circle */}
+                  {/* Outer pulsing ring */}
+                  <div className="absolute inset-0 border-4 border-white/30 rounded-full animate-pulse"></div>
+                  {/* Middle spinning ring */}
                   <div className="absolute inset-0 border-4 border-transparent border-t-white border-r-white rounded-full animate-spin"></div>
-                  {/* Center dot */}
+                  {/* Inner glowing dot */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
                   </div>
@@ -400,83 +506,166 @@ export default function Home() {
           </div>
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-              {error}
+            <div className="rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 px-4 py-3">
+              <div className="font-semibold mb-1">Something went wrong</div>
+              <div className="text-sm">{error}</div>
             </div>
           )}
         </div>
 
-        {/* Training Plan Display */}
+        {/* Plan Output */}
         {plan && (
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">📋 Your Training Plan</h2>
+          <div className={`${cardBase} p-5 md:p-8 mb-6 md:mb-8`}>
+            <div className="flex items-center justify-between gap-4 mb-5">
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900">📋 Your Training Plan</h2>
+              <span className="text-sm text-slate-500">Preview + refine</span>
+            </div>
 
             {plan.encouragement && (
-              <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
-                <p className="text-green-800">{plan.encouragement}</p>
+              <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 mb-6">
+                <div className="flex items-start gap-2">
+                  <span className="text-emerald-700">🌿</span>
+                  <p className="text-emerald-900">{plan.encouragement}</p>
+                </div>
               </div>
             )}
 
-            <div className="overflow-x-auto">
+            {/* ✅ MOBILE: Card view */}
+            <div className="md:hidden space-y-3">
+              {plan.planRows?.map((row, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="text-xs font-semibold text-slate-500">{row.time}</div>
+                      <div className="text-base font-bold text-slate-900 mt-1">{row.exercise}</div>
+                    </div>
+
+                    {row.notes ? (
+                      <span className="shrink-0 text-[11px] px-2 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-200">
+                        Notes
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-3 text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                    {row.description}
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-1 gap-2 text-xs text-slate-600">
+                    <div className="rounded-xl bg-slate-50/60 border border-slate-200 px-3 py-2">
+                      <span className="font-semibold text-slate-700">Equipment: </span>
+                      {row.equipment || '—'}
+                    </div>
+                    <div className="rounded-xl bg-slate-50/60 border border-slate-200 px-3 py-2">
+                      <span className="font-semibold text-slate-700">Purpose: </span>
+                      {row.notes || '—'}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* ✅ DESKTOP: Table view */}
+            <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-blue-100">
-                    <th className="border p-3 text-left font-semibold">Time</th>
-                    <th className="border p-3 text-left font-semibold">Exercise</th>
-                    <th className="border p-3 text-left font-semibold">Description</th>
-                    <th className="border p-3 text-left font-semibold">Equipment</th>
-                    <th className="border p-3 text-left font-semibold">Notes</th>
+                  <tr className="bg-sky-100/90 text-sky-900">
+                    <th className="border-b border-slate-200 p-3 text-left font-semibold whitespace-nowrap">
+                      Time
+                    </th>
+                    <th className="border-b border-slate-200 p-3 text-left font-semibold whitespace-nowrap">
+                      Exercise
+                    </th>
+                    <th className="border-b border-slate-200 p-3 text-left font-semibold">
+                      Description
+                    </th>
+                    <th className="border-b border-slate-200 p-3 text-left font-semibold whitespace-nowrap">
+                      Equipment
+                    </th>
+                    <th className="border-b border-slate-200 p-3 text-left font-semibold">
+                      Notes
+                    </th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {plan.planRows?.map((row, index) => (
-                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                      <td className="border p-3 whitespace-nowrap">{row.time}</td>
-                      <td className="border p-3 font-medium">{row.exercise}</td>
-                      <td className="border p-3">{row.description}</td>
-                      <td className="border p-3">{row.equipment}</td>
-                      <td className="border p-3 text-sm text-gray-600">{row.notes}</td>
+                    <tr
+                      key={index}
+                      className={index % 2 === 0 ? 'bg-white/60' : 'bg-slate-50/60'}
+                    >
+                      <td className="border-b border-slate-200 p-3 whitespace-nowrap text-slate-700 text-sm">
+                        {row.time}
+                      </td>
+                      <td className="border-b border-slate-200 p-3 font-semibold text-slate-900 text-sm">
+                        {row.exercise}
+                      </td>
+                      <td className="border-b border-slate-200 p-3 text-slate-700 text-sm leading-relaxed">
+                        {row.description}
+                      </td>
+                      <td className="border-b border-slate-200 p-3 text-slate-700 text-sm">
+                        {row.equipment}
+                      </td>
+                      <td className="border-b border-slate-200 p-3 text-slate-600 text-sm leading-relaxed">
+                        {row.notes}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            {/* Chat Box */}
-            <div className="mt-8 border-t pt-6">
-              <h3 className="text-xl font-semibold mb-4">💬 Ask Questions or Refine Your Plan</h3>
-
-              <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
-                {chatMessages.map((msg, index) => (
-                  <div
-                    key={index}
-                    className={`p-3 rounded-lg ${
-                      msg.role === 'user' ? 'bg-blue-100 ml-8' : 'bg-gray-100 mr-8'
-                    }`}
-                  >
-                    <p className="text-sm font-medium mb-1">
-                      {msg.role === 'user' ? 'You' : 'Coach'}
-                    </p>
-                    <p>{msg.content}</p>
-                  </div>
-                ))}
+            {/* Chat */}
+            <div className="mt-8 border-t border-slate-200/70 pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg md:text-xl font-semibold text-slate-900">
+                  💬 Ask Questions or Refine Your Plan
+                </h3>
+                <span className="text-sm text-slate-500">Coach chat</span>
               </div>
 
-              <div className="flex gap-2">
+              <div className="space-y-3 mb-4 max-h-44 md:max-h-64 overflow-y-auto pr-1">
+                {chatMessages.map((msg, index) => {
+                  const isUser = msg.role === 'user';
+                  return (
+                    <div
+                      key={index}
+                      className={`rounded-2xl px-4 py-3 shadow-sm border ${
+                        isUser
+                          ? 'bg-sky-50 border-sky-100 ml-2 md:ml-6'
+                          : 'bg-white/70 border-slate-200 mr-2 md:mr-6'
+                      }`}
+                    >
+                      <p className="text-xs font-semibold text-slate-600 mb-1">
+                        {isUser ? 'You' : 'Coach'}
+                      </p>
+                      <p className="text-slate-800 leading-relaxed whitespace-pre-line">
+                        {msg.content}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
                   placeholder="Ask a question or request modifications..."
-                  className="flex-1 border rounded-lg p-3"
+                  className={`${inputBase} flex-1`}
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleChatSend()}
+                  onKeyDown={(e) => e.key === 'Enter' && handleChatSend()}
                   disabled={chatLoading}
                 />
+
                 <button
                   type="button"
                   onClick={handleChatSend}
                   disabled={chatLoading}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium disabled:opacity-50"
+                  className="w-full sm:w-auto rounded-2xl bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-900 hover:to-slate-800 text-white px-5 md:px-6 py-3 font-semibold shadow-sm transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {chatLoading ? 'Sending...' : 'Send'}
                 </button>
@@ -484,6 +673,11 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        {/* Footer */}
+        <div className="text-center text-xs text-slate-500 mt-6">
+          Built for personal learning + practice planning ✨
+        </div>
       </div>
     </div>
   );
