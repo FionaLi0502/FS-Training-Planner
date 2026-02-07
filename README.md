@@ -1,172 +1,354 @@
 # ⛸️ Figure Skating Training Planner
 
-An AI-powered web application that generates personalized training plans for figure skaters using Claude AI.
+An AI-powered web application that generates personalized, safe training plans for figure skaters of all levels. Built with modern web technologies and powered by Claude AI for intelligent, adaptive coaching.
 
-## 🌟 Features
+## 🌟 Key Features
 
-- **Smart Greeting** - Changes based on time of day (Good Morning/Afternoon/Evening)
-- **Comprehensive Profiling** - Capture skater type, test level, current skills
-- **Customizable Training** - Select focus areas, time, intensity, and equipment
-- **Readiness Assessment** - Factor in soreness, energy, and recovery needs
-- **AI-Generated Plans** - Personalized training sessions with detailed exercises
-- **Interactive Chat** - Ask questions and refine your plan
-- **Mobile Responsive** - Works perfectly on phones and computers
+### 🎨 **Beautiful Modern UI**
+- **Pastel gradient design** with soft rose, sky, and white color scheme
+- **Glassmorphism effects** with backdrop blur and subtle shadows
+- **Rounded-2xl design language** throughout for a cohesive, friendly look
+- **Fully responsive** - Seamlessly adapts from desktop to mobile
+- **Touch-optimized** chip buttons and interactive elements
+- **Smooth animations** with loading spinner and transitions
 
-## 🚀 Live Demo
+### 🤖 **Smart AI Training Plans**
+- **Personalized workouts** based on skill level, goals, and physical readiness
+- **Safety-first approach** - Adapts to soreness, injuries, and energy levels
+- **Progressive structure** - Warm-up → Main work (no cool-down bloat)
+- **Context-aware** - Considers time of day, equipment, and training mode
+- **JSON-structured output** in easy-to-read table format
 
-[View Live App](https://fs-training-planner.vercel.app/)
+### 💬 **Natural Chat Coaching**
+- **Human-like responses** - Friendly, practical, non-robotic
+- **Adaptive tone** - Empathetic with emotional concerns, technical when needed
+- **Conversational follow-ups** - Ask questions, request modifications
+- **Safety monitoring** - Flags pain/injury concerns and suggests professional help
+- **No giant walls of text** - Short paragraphs, bullets only when helpful
+
+### 📱 **Mobile-First Design**
+- **Compact layout** optimized for phone screens
+- **Responsive grid** switches between 1-2 columns based on screen size
+- **Touch-friendly chips** instead of checkboxes for easy tapping
+- **Smooth scrolling** and optimized spacing for thumb navigation
+- **Works perfectly on any device** - Phone, tablet, desktop
+
+### ⚡ **Performance & UX**
+- **Loading indicator** shows progress during plan generation
+- **Real-time validation** prevents errors before submission
+- **Instant feedback** for all user interactions
+- **Fast load times** with optimized Next.js build
+
+---
+
+## 🎯 What Makes This Different?
+
+**Traditional fitness apps:**
+- ❌ Generic, one-size-fits-all plans
+- ❌ Ignore how you're feeling today
+- ❌ Robotic, templated responses
+- ❌ Complicated interfaces
+
+**Our Figure Skating Planner:**
+- ✅ Personalized to YOUR skill level and goals
+- ✅ Adapts to soreness, fatigue, stress, injury recovery
+- ✅ Friendly coach that actually listens
+- ✅ Clean, beautiful, easy-to-use interface
+
+---
 
 ## 📸 Screenshots
 
-<img width="1788" height="2965" alt="image" src="https://github.com/user-attachments/assets/408194ff-d0f1-4fb2-b828-115cde13e88a" />   
-*Main interface with comprehensive training inputs*<br>
-*AI-generated training plan with detailed exercises*
+![Training Planner Interface](<img width="2363" height="2651" alt="image" src="https://github.com/user-attachments/assets/beda3560-6b40-451e-af02-e92de7477ba8" />)
+*Modern pastel UI with comprehensive training inputs*
+
+![Generated Training Plan](<img width="957" height="1063" alt="image" src="https://github.com/user-attachments/assets/514f38dd-36c4-4091-ba12-cfca4c266ba1" />)
+*AI-generated training plan with safety-conscious exercises*
+
+![Mobile View](<img width="645" height="3595" alt="image" src="https://github.com/user-attachments/assets/bbf1761d-527c-4e20-b523-f80b7b1bfea9" />)
+*Fully responsive mobile interface with touch-optimized controls*
+
+![Chat Interface](<img width="722" height="320" alt="image" src="https://github.com/user-attachments/assets/71ae91d9-5a30-4105-8362-3000d001c874" />)
+*Natural conversation with your AI skating coach*
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS
-- **AI:** Anthropic Claude 3.5 Sonnet
-- **Deployment:** Vercel
+- **Framework:** Next.js 14.2 (App Router)
+- **Styling:** Tailwind CSS 3.4
+- **AI:** Anthropic Claude Sonnet 4 (claude-sonnet-4-20250514)
 - **Language:** JavaScript/React
+- **Deployment:** Vercel (recommended)
+- **State Management:** React Hooks (useState)
 
-## 📋 Prerequisites
+---
 
-- Node.js 18+ installed
-- Anthropic Claude API key ([Get one here](https://console.anthropic.com))
+## 🚀 Quick Start
 
-## 🔧 Installation
+### Prerequisites
 
-### 1. Clone the repository
+- **Node.js 18+** ([Download](https://nodejs.org))
+- **Anthropic API key** ([Get one](https://console.anthropic.com))
+- **Git** (optional, for cloning)
+
+### Installation
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/fs-training-planner.git
+# 1. Clone the repository
+git clone https://github.com/FionaLi0502/FS-Training-Planner/.git
 cd fs-training-planner
-```
 
-### 2. Install dependencies
-
-```bash
+# 2. Install dependencies
 npm install
-```
 
-### 3. Set up environment variables
-
-Create a `.env.local` file in the root directory:
-
-```bash
+# 3. Create environment file
+# Create .env.local in the root directory and add:
 ANTHROPIC_API_KEY=your-api-key-here
-```
 
-### 4. Run the development server
-
-```bash
+# 4. Run development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+---
+
 ## 📱 Mobile Testing
 
-To test on your phone:
+Test the mobile experience on your phone:
 
-1. Find your computer's IP address (`ipconfig` on Windows)
-2. Make sure your phone and computer are on the same WiFi
-3. Visit `http://YOUR-IP-ADDRESS:3000` on your phone
+1. **Find your computer's IP address:**
+   - Windows: `ipconfig` in Command Prompt
+   - Mac/Linux: `ifconfig` in Terminal
+   - Look for IPv4 address (e.g., 192.168.1.100)
 
-## 🚀 Deployment
+2. **Connect both devices to the same WiFi**
 
-### Deploy to Vercel (Recommended)
+3. **On your phone, visit:**
+   ```
+   http://YOUR-IP-ADDRESS:3000
+   ```
+   Example: `http://192.168.1.100:3000`
 
-1. Push your code to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. Import your GitHub repository
-4. Add environment variable: `ANTHROPIC_API_KEY`
-5. Deploy!
+4. **Test the touch-optimized interface!**
 
-Your app will be live at: `https://your-app.vercel.app`
+---
 
-## 📖 Usage Guide
+## 🎓 How to Use
 
-### Filling Out the Form
+### Step 1: Fill Out Your Profile
 
-1. **Skater Profile**
-   - Select Adult or Youth
-   - Choose your test level passed
+**Skater Profile**
+- Select Adult or Youth
+- Choose your highest test level passed
 
-2. **Current Skills**
-   - Select your current jump level
-   - Select your current spin level
-   - When between levels, choose the lower one
+**Current Skills**
+- Select your current jump level (Waltz to Doubles+)
+- Select your current spin level (Two-foot to Combinations+)
+- When between levels, choose the lower one for safety
 
-3. **Training Focus**
-   - Check the areas you want to work on
-   - Multiple selections allowed
+### Step 2: Set Your Goals
 
-4. **Time & Effort**
-   - Drag slider for available training time (15-180 minutes)
-   - Select intensity level
-   - Choose time of day
+**Training Focus** (select multiple)
+- Jumps, Spins, Footwork, Edges
+- Flexibility, Strength, Balance, Musicality
 
-5. **Training Mode**
-   - Off-ice, On-ice, or Combined
+### Step 3: Set Your Parameters
 
-6. **Equipment**
-   - Check available equipment
-   - Add custom equipment in text field
+**Time & Effort**
+- Drag slider: 15-180 minutes available
+- Choose intensity: Low / Medium / High
+- Select time of day: Morning / Afternoon / Evening
 
-7. **Readiness Check**
-   - Select current physical/mental state
-   - If injured or in pain, specify affected area
+**Training Location**
+- Off-ice, On-ice, or Combined
 
-8. **Generate Plan**
-   - Click "Generate Training Plan"
-   - Wait 5-10 seconds for AI to create your plan
+**Equipment** (select all available)
+- Resistance bands, Yoga mat, Foam roller
+- Balance board, Jump harness, Spinner
+- Add custom equipment in text field
 
-### Using the Chat
+### Step 4: Check Your Readiness
 
-After generating a plan:
-- Ask questions like "Can you make this easier?"
-- Request modifications: "Add more stretching"
-- Get explanations: "Why this exercise?"
+**Physical & Mental State:**
+- Feeling good ✅
+- Minor soreness
+- Significant soreness/pain (specify area)
+- Not enough rest / poor sleep
+- Not enough food / low energy
+- High stress / high pressure
+- Returning from injury (specify area)
 
-## 🎯 Training Plan Output
+### Step 5: Generate Your Plan
 
-Each plan includes:
+Click **"✨ Generate Training Plan"**
+
+Watch the spinner animation while Claude creates your custom plan (5-10 seconds)
+
+### Step 6: Review & Refine
+
+**Your Plan Includes:**
 - **Time** - Duration for each exercise
-- **Exercise** - Name of the activity
-- **Description** - Clear instructions
-- **Equipment** - Required items
+- **Exercise** - Name and type
+- **Description** - Clear step-by-step instructions
+- **Equipment** - What you need
 - **Notes** - Safety tips and modifications
 
-Plus an encouraging message to motivate your training!
+**Plus:** Encouraging message to motivate your training!
 
-## 🔒 Security
+### Step 7: Use the Chat
 
-- Never commit `.env.local` to GitHub
-- API keys are stored securely in environment variables
-- `.gitignore` prevents accidental exposure
+Ask follow-up questions:
+- "Can you make this easier?"
+- "Why do you recommend this exercise?"
+- "Can we add more flexibility work?"
+- "My ankle hurts during this, what should I do?"
 
-## 🛠️ Customization
+Get natural, helpful responses from your AI coach!
 
-### Change Colors
+---
 
-Edit `app/page.js` and replace:
-- `bg-blue-600` with your preferred color
-- `text-blue-900` for text colors
+## 🎨 Design Features
 
-### Add More Test Levels
+### Color Scheme
+- **Primary:** Sky blue gradient (`from-sky-400 to-blue-500`)
+- **Background:** Rose → Sky → White gradient
+- **Accents:** Pink, Yellow, Purple, Rose for different sections
+- **Text:** Slate gray scale for readability
 
-In `app/page.js`, add options to the test level dropdown.
+### UI Components
+- **Cards:** White with glassmorphism (`backdrop-blur-xl`)
+- **Chips:** Rounded-full pill buttons with active states
+- **Inputs:** Soft slate backgrounds with sky-blue focus rings
+- **Shadows:** Soft, layered shadows for depth
+- **Icons:** Emoji badges in colored rounded squares
+
+### Responsive Breakpoints
+- **Mobile:** Single column, compact spacing
+- **Tablet (md:)** Two columns, expanded spacing
+- **Desktop:** Optimized for mouse/keyboard
+
+---
+
+## 🔐 Security Best Practices
+
+### ✅ What's Safe to Share (GitHub)
+- `package.json` - Dependencies
+- `app/page.js` - Frontend UI
+- `app/layout.js` - App layout
+- `app/globals.css` - Styles
+- `app/api/claude/route.js` - API handler (no secrets)
+- `next.config.js`, `tailwind.config.js`, `postcss.config.js`
+- `.gitignore` - Prevents accidental exposure
+- `README.md` - Documentation
+
+### ❌ Never Upload to GitHub
+- `.env.local` - Contains your API key!
+- `.env` - Any environment file
+- `node_modules/` - Dependencies (reinstall with npm)
+- `.next/` - Build files
+
+### 🔒 API Key Security
+1. **Always use `.env.local`** for API keys
+2. **Never hardcode** keys in source files
+3. **Check `.gitignore`** includes `.env*`
+4. **Rotate keys** if accidentally exposed
+5. **Use Vercel secrets** for production
+
+---
+
+## 🚀 Deployment to Vercel
+
+### Step 1: Push to GitHub
+
+```bash
+git init
+git add .
+git commit -m "Initial commit - Figure Skating Training Planner"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/fs-training-planner.git
+git push -u origin main
+```
+
+### Step 2: Deploy on Vercel
+
+1. Go to [vercel.com](https://vercel.com)
+2. Sign up/in with GitHub
+3. Click **"Add New..."** → **"Project"**
+4. Import your `fs-training-planner` repository
+5. **Before deploying:**
+   - Click **"Environment Variables"**
+   - Add: `ANTHROPIC_API_KEY` = `your-key-here`
+   - Click **"Add"**
+6. Click **"Deploy"**
+
+Wait 1-2 minutes for deployment to complete.
+
+### Step 3: Get Your Live URL
+
+After deployment:
+- Your app is live at: `https://fs-training-planner.vercel.app`
+- Test it on your phone, share with friends!
+- Updates automatically deploy when you push to GitHub
+
+---
+
+## 🛠️ Customization Guide
+
+### Change Color Theme
+
+**In `app/page.js`, update the gradient:**
+
+```javascript
+// Current: Rose → Sky → White
+className="min-h-screen bg-gradient-to-b from-rose-50 via-sky-50 to-white"
+
+// Change to: Purple → Blue → White
+className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white"
+```
+
+**Button gradient:**
+```javascript
+// Current: Sky blue
+className="bg-gradient-to-r from-sky-400 to-blue-500"
+
+// Change to: Purple
+className="bg-gradient-to-r from-purple-400 to-purple-500"
+```
+
+### Add New Test Levels
+
+**In `app/page.js`, find the test level dropdown:**
+
+```javascript
+<option value="Pre-Juvenile">Pre-Juvenile</option>
+<option value="Juvenile">Juvenile</option>
+<option value="Intermediate">Intermediate</option>
+<option value="Novice">Novice</option>
+<option value="Junior">Junior</option>
+<option value="Senior">Senior</option>
+```
 
 ### Modify Time Range
 
-Adjust the slider in `app/page.js`:
+**Find the time slider:**
 ```javascript
-min="15"    // minimum minutes
-max="180"   // maximum minutes
-step="15"   // increment
+min="10"    // Change minimum (default: 15)
+max="240"   // Change maximum (default: 180)
+step="10"   // Change increment (default: 15)
 ```
+
+### Add Training Focus Options
+
+**Find the training focus array:**
+```javascript
+['Jumps', 'Spins', 'Footwork', 'Edges', 
+ 'Flexibility', 'Strength', 'Balance', 'Musicality',
+ 'Artistry', 'Choreography', 'Mental Training'] // Add these!
+```
+
+---
 
 ## 🐛 Troubleshooting
 
@@ -175,11 +357,11 @@ step="15"   // increment
 npm install
 ```
 
-### "API Error" when generating plan
-- Check `.env.local` exists
-- Verify API key is correct
-- Ensure you have Claude API credits
-- Restart dev server
+### API generates error
+- ✅ Check `.env.local` exists in root folder
+- ✅ Verify API key is correct (no spaces)
+- ✅ Ensure you have Anthropic API credits
+- ✅ Restart dev server: `Ctrl+C` then `npm run dev`
 
 ### Port 3000 already in use
 ```bash
@@ -187,10 +369,24 @@ npx kill-port 3000
 npm run dev
 ```
 
+### Styles don't load properly
+```bash
+# Rebuild Tailwind
+npm run dev
+# Hard refresh browser: Ctrl + Shift + R
+```
+
+### Mobile view not loading
+- ✅ Ensure computer and phone on **same WiFi**
+- ✅ Check firewall isn't blocking port 3000
+- ✅ Use computer's **local IP**, not localhost
+
 ### Changes don't appear
 - Save all files (Ctrl+S)
 - Refresh browser (Ctrl+R)
-- Restart dev server if needed
+- If still not working, restart dev server
+
+---
 
 ## 📁 Project Structure
 
@@ -199,55 +395,145 @@ fs-training-planner/
 ├── app/
 │   ├── api/
 │   │   └── claude/
-│   │       └── route.js       # Claude API handler
-│   ├── page.js               # Main UI
-│   ├── layout.js             # App layout
-│   └── globals.css           # Global styles
-├── public/                   # Static files
-├── .env.local               # Environment variables (not in git)
-├── .gitignore              # Git ignore rules
-├── package.json            # Dependencies
-├── next.config.js          # Next.js configuration
-├── tailwind.config.js      # Tailwind configuration
-└── README.md              # This file
+│   │       └── route.js          # API handler with chat system prompt
+│   ├── page.js                   # Main UI (pastel design)
+│   ├── layout.js                 # App layout wrapper
+│   └── globals.css               # Global styles + Tailwind
+├── public/                       # Static assets
+├── .env.local                    # API key (NEVER commit!)
+├── .gitignore                    # Protects secrets
+├── package.json                  # Dependencies
+├── next.config.js                # Next.js config
+├── tailwind.config.js            # Tailwind config
+├── postcss.config.js             # PostCSS config
+└── README.md                     # This file
 ```
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
-
-## 📄 License
-
-MIT License - feel free to use this project for personal or commercial purposes.
-
-## 👏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- AI powered by [Anthropic Claude](https://www.anthropic.com/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-
-## 📞 Support
-
-If you encounter issues:
-1. Check the Troubleshooting section above
-2. Review error messages in the browser console (F12)
-3. Ensure all dependencies are installed
-4. Verify your API key is valid
-
-## 🎯 Future Enhancements
-
-- [ ] Save training plans to local storage
-- [ ] Export plans to PDF
-- [ ] Progress tracking
-- [ ] Multiple skater profiles
-- [ ] Training history
-- [ ] Video exercise demonstrations
 
 ---
 
-**Made with ❤️ for figure skaters**
+## 🎯 Feature Highlights
 
-⛸️ Happy Training! ⛸️
+### Smart Training Plans
+- ✅ 2-8 exercises based on available time
+- ✅ Progressive structure (warm-up → main work)
+- ✅ No unnecessary cool-down sections
+- ✅ Minimum 15 minutes per main activity
+- ✅ Considers skill level and goals
+
+### Safety Features
+- ✅ Adapts to soreness and pain
+- ✅ Modifies for injury recovery
+- ✅ Accounts for low energy/poor sleep
+- ✅ Provides safety notes for each exercise
+- ✅ Chat monitors for serious concerns
+
+### Chat Coaching
+- ✅ Short, digestible responses (2-3 paragraphs)
+- ✅ Bullets only when truly helpful
+- ✅ Empathetic with emotional concerns
+- ✅ One question at a time for follow-ups
+- ✅ Calm, supportive coaching tone
+
+### Mobile Optimization
+- ✅ Touch-optimized chip buttons
+- ✅ Responsive grid layouts
+- ✅ Optimized font sizes and spacing
+- ✅ Smooth scrolling on small screens
+- ✅ Works in portrait and landscape
+
+---
+
+## 💡 Tips for Best Results
+
+### Getting Better Plans
+1. **Be honest about skill level** - Choose the lower option if uncertain
+2. **Update readiness** - Tell the AI how you're really feeling
+3. **Select relevant focus areas** - Don't check everything
+4. **Specify equipment** - More options = better exercises
+5. **Use the chat** - Refine the plan with questions
+
+### Using the Chat Effectively
+- Ask specific questions: "Can you explain the crossovers exercise?"
+- Request modifications: "Make this lower impact please"
+- Share concerns: "This hurts my ankle, alternatives?"
+- Get explanations: "Why this order?"
+
+### Mobile Usage
+- Use landscape mode for wider view
+- Tap chips instead of scrolling through checkboxes
+- Pinch to zoom on plan table if needed
+- Use "Find on page" to locate specific exercises
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Ideas for improvements:
+
+- [ ] Export plans to PDF
+- [ ] Save favorite plans (local storage)
+- [ ] Multiple skater profiles
+- [ ] Training log/history
+- [ ] Video demonstrations
+- [ ] Progress tracking graphs
+- [ ] Nutrition suggestions
+- [ ] Competition preparation mode
+
+Feel free to:
+- Report bugs (GitHub Issues)
+- Suggest features
+- Submit pull requests
+- Share feedback
+
+---
+
+## 📄 License
+
+MIT License - Free to use for personal or commercial purposes.
+
+---
+
+## 👏 Acknowledgments
+
+- **Built with:** [Next.js](https://nextjs.org/)
+- **AI powered by:** [Anthropic Claude](https://www.anthropic.com/)
+- **Styled with:** [Tailwind CSS](https://tailwindcss.com/)
+- **Deployed on:** [Vercel](https://vercel.com/)
+
+---
+
+## 📞 Support
+
+### Having Issues?
+
+1. **Read this README** (especially Troubleshooting section)
+2. **Check browser console** (F12 → Console)
+3. **Verify `.env.local`** has correct API key
+4. **Check Anthropic console** for API credits
+5. **Restart dev server** and try again
+
+### Questions?
+
+- Review the code comments (well-documented!)
+- Check Next.js docs for framework questions
+- Check Tailwind docs for styling questions
+- Check Anthropic docs for API questions
+
+---
+
+## 🎉 You're Ready!
+
+Your Figure Skating Training Planner is:
+- ✅ Beautiful & modern
+- ✅ Mobile-optimized
+- ✅ AI-powered
+- ✅ Safe & secure
+- ✅ Production-ready
+
+**Start planning smarter training sessions today!** ⛸️✨
+
+---
+
+**Made with ❤️ for figure skaters everywhere**
+
+*Practice smart. Train safe. Skate happy.* 🌟
