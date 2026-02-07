@@ -72,7 +72,7 @@ An AI-powered web application that generates personalized, safe training plans f
 *AI-generated training plan with safety-conscious exercises*
 
 ### Mobile View
-<img src="https://private-user-images.githubusercontent.com/196947224/402896158-0b79e518-0a1e-48a7-9869-e1a8c6b3acbb.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzg5NTczMzIsIm5iZiI6MTczODk1NzAzMiwicGF0aCI6Ii8xOTY5NDcyMjQvNDAyODk2MTU4LTBiNzllNTE4LTBhMWUtNDhhNy05ODY5LWUxYThjNmIzYWNiYi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMjA3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDIwN1QyMDA1MzJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03NWE2ZjNlNWRlNmMyNGM3Y2ExMmU5M2RmODNhOTQyNjliZTkzNjJhYTk2ZmJlM2Q5ZDM2NTUxMDRiMmQyNTZmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.SoYs-XpvmLI0QovXPe2GFz2r9ZI-h15QmWPJWbXGqPU" alt="Mobile View" width="400"/>
+<img width="236" height="448" alt="Image" src="https://github.com/user-attachments/assets/1aa4ff27-94fc-4eeb-9400-41b4eaa546ac" />
 
 *Fully responsive mobile interface with touch-optimized controls*
 
