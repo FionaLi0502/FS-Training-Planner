@@ -14,14 +14,12 @@ An AI-powered web application that generates personalized training plans for fig
 
 ## 🚀 Live Demo
 
-[View Live App](https://your-app-url.vercel.app)
+[View Live App](https://fs-training-planner.vercel.app/)
 
 ## 📸 Screenshots
 
-![Training Planner Interface](screenshots/main-interface.png)
-*Main interface with comprehensive training inputs*
-
-![Generated Training Plan](screenshots/training-plan.png)
+<img width="1788" height="2965" alt="image" src="https://github.com/user-attachments/assets/408194ff-d0f1-4fb2-b828-115cde13e88a" />   
+*Main interface with comprehensive training inputs*<br>
 *AI-generated training plan with detailed exercises*
 
 ## 🛠️ Tech Stack
