@@ -646,10 +646,20 @@ export default function Home() {
           </div>
         )}
 
-        {/* Footer */}
-        <div className="text-center text-xs text-slate-500 mt-6">
-          Built for personal learning + practice planning ✨
-        </div>
+{/* Footer */}
+<div className="text-center text-xs text-slate-500 mt-6 space-y-2">
+  <div>Built for personal learning + practice planning ✨</div>
+
+  <a
+    href="https://github.com/FionaLi0502/FS-Training-Planner"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-300 bg-white/70 text-slate-700 hover:bg-slate-100 hover:border-slate-400 transition text-xs font-medium"
+  >
+    ⭐ View on GitHub
+  </a>
+</div>
+
       </div>
     </div>
   );
