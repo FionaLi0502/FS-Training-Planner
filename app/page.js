@@ -468,42 +468,24 @@ export default function Home() {
           </div>
 
           {/* Generate */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={handleGeneratePlan}
-              disabled={loading}
-              className="w-full rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white font-semibold py-4 px-6 text-lg shadow-[0_12px_30px_rgba(59,130,246,0.22)] transition disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-3">
-                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span>Generating Your Plan...</span>
-                </span>
-              ) : (
-                '✨ Generate Training Plan'
-              )}
-            </button>
-
-            {/* Beautiful circular loading spinner on the right */}
-            {loading && (
-              <div className="absolute right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                <div className="relative w-12 h-12">
-                  {/* Outer pulsing ring */}
-                  <div className="absolute inset-0 border-4 border-white/30 rounded-full animate-pulse"></div>
-                  {/* Middle spinning ring */}
-                  <div className="absolute inset-0 border-4 border-transparent border-t-white border-r-white rounded-full animate-spin"></div>
-                  {/* Inner glowing dot */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
-                  </div>
-                </div>
-              </div>
+          <button
+            type="button"
+            onClick={handleGeneratePlan}
+            disabled={loading}
+            className="w-full rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white font-semibold py-4 px-6 text-lg shadow-[0_12px_30px_rgba(59,130,246,0.22)] transition disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loading ? (
+              <span className="flex items-center justify-center gap-3">
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Generating Your Plan...</span>
+              </span>
+            ) : (
+              '✨ Generate Training Plan'
             )}
-          </div>
+          </button>
 
           {error && (
             <div className="rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 px-4 py-3">
